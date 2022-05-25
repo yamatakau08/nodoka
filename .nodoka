@@ -1,0 +1,97 @@
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# のどか - dot.nodoka
+# Copyright (C) 1999-2005, TAGA Nayuta <nayuta@users.sourceforge.net>
+#
+
+define USE109
+
+define USEdefault
+#define AppleWirelessKeyboard
+
+# まずキーボード定義を読み込む
+if ( USE104 )
+  include "104.nodoka"		# 104 キーボード設定
+  if ( USE109on104 )
+    include "109on104.nodoka"	# 104 キーボードを 109 キーボード風に
+  endif
+else
+  include "109.nodoka"		# 109 キーボード設定
+  if ( USE104on109 )
+    include "104on109.nodoka"	# 109 キーボードを 104 キーボード風に
+  endif
+endif
+
+if ( USEdefault )
+  include	"default.nodoka"	 # Emacs ライクなさまざまな設定
+endif
+
+keymap Global
+
+key C-A-D = &DescribeBindings
+
+# このファイルをホームディレクトリにコピーしてから、
+# 以下に自分の好みのキーバインディングを設定するとよい。
+# このファイル自体を変更しないこと。
+
+#
+# for AppleWirelessKeyboard
+# alt(option)-control-右command
+#
+if ( AppleWirelessKeyboard )
+    mod win -= RightWindows     # RightWindows をモディファイヤではなくする
+    key *RightWindows = *Delete # どんなときでも RightWindows を Delete へ変換する
+
+    # どんなときでもF12をPrintScreenへ変換
+    key *F12 = *PrintScreen
+endif
+
+# USEdefaultを定義した場合に、default.nodokaにて、Escを半角/全角に設定されてしまうのを
+# 以下の定義で回避
+key *Esc = Esc
+
+#
+# Microsoft
+#
+## Internet Explore
+window InternetExplorer /iexplore.exe/ : EmacsEdit
+
+# Excel
+window MicrosoftExcel /EXCEL\.EXE:XLMAIN:/ : EmacsEdit
+key C-V = &Default
+
+# PowerPoint
+window PowerPoint /POWERPNT\.EXE/ : EmacsEdit # doesn't effect on office 365, effect until office 2018
+
+# these followings are office 365
+#CLASS:	C:\Program Files (x86)\Microsoft Office\Root\Office16\POWERPNT.EXE:PPTFrameClass:MDIClient
+#TITLE:	C:\Program Files (x86)\Microsoft Office\Root\Office16\POWERPNT.EXE:HSQ-HA-GP_20190513.pptx - PowerPoint:
+# Window class名、上の調査ログのCLASSより PPTFrameClass
+window PPTFrameClass /POWERPNT\.EXE/ : EmacsEdit # effect on office 365, window class name is different from office 2018
+key C-V = &Default
+
+# Project
+window MicrosoftProject /:JWinproj-Edit$/ : EmacsEdit
+
+# Outlook
+window OUTLOOK /:rctrl_renwnd32*/ : EmacsEdit
+
+## Emacs
+window Emacs /emacs.exe/ : Global
+# if use IC-C-Yen = $ToggleIME , Emacs C-M-\ (indent-region) is invalid.
+# and "M-<Kanji> is defined" appears when press "C-\".
+# So assigned IC-C-Yen to &Default
+key IC-C-Yen = &Default
+
+# Google Keep
+#CLASS:	C:\Program Files (x86)\Google\Chrome\Application\chrome.exe:Chrome_WidgetWin_1:Chrome_RenderWidgetHostHWND
+#TITLE:	C:\Program Files (x86)\Google\Chrome\Application\chrome.exe:Google Keep:Chrome Legacy Window
+window Keep /Chrome_WidgetWin_1/ : EmacsEdit
+
+# Remote DeskTop
+#CLASS:	C:\WINDOWS\system32\mstsc.exe:TscShellContainerClass:TscShellAxHostClass:ATL:00007FFFBC543010:UIMainClass
+#TITLE:	C:\WINDOWS\system32\mstsc.exe:JPC00183513 - リモート デスクトップ接続:::JPC00183513 - リモート デスクトップ接続
+window RemoteDeskTop /TscShellAxHostClass/ : EmacsEdit
+#key *IC-C-Yen = $ToggleIME
+#key C-YenSign   = $ToggleIME
+
+ 
