@@ -91,7 +91,7 @@ window Keep /Chrome_WidgetWin_1/ : EmacsEdit
 #CLASS:	C:\WINDOWS\system32\mstsc.exe:TscShellContainerClass:TscShellAxHostClass:ATL:00007FFFBC543010:UIMainClass
 #TITLE:	C:\WINDOWS\system32\mstsc.exe:JPC00183513 - リモート デスクトップ接続:::JPC00183513 - リモート デスクトップ接続
 window RemoteDeskTop /TscShellAxHostClass/ : EmacsEdit
-#key *IC-C-Yen = $ToggleIME
+key *IC-C-Yen = C-Yen
 #key C-YenSign   = $ToggleIME
 
  
