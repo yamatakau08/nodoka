@@ -55,25 +55,26 @@ key *Esc = Esc
 ## Internet Explore
 window InternetExplorer /iexplore.exe/ : EmacsEdit
 
-# Excel
-window MicrosoftExcel /EXCEL\.EXE:XLMAIN:/ : EmacsEdit
+## Excel
+#CLASS: C:\Program Files (x86)\Microsoft Office\Root\Office16\EXCEL.EXE:XLMAIN:XLDESK:EXCEL7
+window Excel /EXCEL\.EXE.*/ : EmacsEdit
 key C-V = &Default
 
-# PowerPoint
-window PowerPoint /POWERPNT\.EXE/ : EmacsEdit # doesn't effect on office 365, effect until office 2018
-
-# these followings are office 365
-#CLASS:	C:\Program Files (x86)\Microsoft Office\Root\Office16\POWERPNT.EXE:PPTFrameClass:MDIClient
-#TITLE:	C:\Program Files (x86)\Microsoft Office\Root\Office16\POWERPNT.EXE:HSQ-HA-GP_20190513.pptx - PowerPoint:
-# Window class名、上の調査ログのCLASSより PPTFrameClass
-window PPTFrameClass /POWERPNT\.EXE/ : EmacsEdit # effect on office 365, window class name is different from office 2018
+## Power Point
+#CLASS: C:\Program Files (x86)\Microsoft Office\Root\Office16\POWERPNT.EXE:PPTFrameClass:MDIClient
+window PowerPoint /POWERPNT\.EXE.*/ : EmacsEdit
 key C-V = &Default
 
-# Project
+## Project
 window MicrosoftProject /:JWinproj-Edit$/ : EmacsEdit
 
-# Outlook
-window OUTLOOK /:rctrl_renwnd32*/ : EmacsEdit
+## Outlook
+#CLASS: C:\Program Files (x86)\Microsoft Office\root\Office16\OUTLOOK.EXE:rctrl_renwnd32:AfxWndW:AfxWndW:#32770:AfxWndA:_WwB:_WwG
+window OUTLOOK /OUTLOOK.EXE.*/ : EmacsEdit
+
+## Outlook New Version
+#CLASS: C:\Program Files\WindowsApps\Microsoft.OutlookForWindows_1.2024.1126.101_x64__8wekyb3d8bbwe\olk.exe:Olk Host:Chrome_WidgetWin_0:Chrome_WidgetWin_0
+window NewOutlook /olk\.exe.*/ : EmacsEdit
 
 ## Emacs
 window Emacs /emacs.exe/ : Global
@@ -82,16 +83,16 @@ window Emacs /emacs.exe/ : Global
 # So assigned IC-C-Yen to &Default
 key IC-C-Yen = &Default
 
-# Google Keep
-#CLASS:	C:\Program Files (x86)\Google\Chrome\Application\chrome.exe:Chrome_WidgetWin_1:Chrome_RenderWidgetHostHWND
-#TITLE:	C:\Program Files (x86)\Google\Chrome\Application\chrome.exe:Google Keep:Chrome Legacy Window
-window Keep /Chrome_WidgetWin_1/ : EmacsEdit
+## Google Keep
+#CLASS: C:\Program Files (x86)\Google\Chrome\Application\chrome.exe:Chrome_WidgetWin_1:Chrome_RenderWidgetHostHWND
+window Keep /chrome.exe.*/ : EmacsEdit
 
 # Remote DeskTop
-#CLASS:	C:\WINDOWS\system32\mstsc.exe:TscShellContainerClass:TscShellAxHostClass:ATL:00007FFFBC543010:UIMainClass
-#TITLE:	C:\WINDOWS\system32\mstsc.exe:JPC00183513 - リモート デスクトップ接続:::JPC00183513 - リモート デスクトップ接続
+#CLASS: C:\WINDOWS\system32\mstsc.exe:TscShellContainerClass:TscShellAxHostClass:ATL:00007FFFBC543010:UIMainClass
 window RemoteDeskTop /TscShellAxHostClass/ : EmacsEdit
 key *IC-C-Yen = C-Yen
 #key C-YenSign   = $ToggleIME
 
- 
+## Teams
+#CLASS: C:\Program Files\WindowsApps\MSTeams_23285.3607.2525.937_x64__8wekyb3d8bbwe\ms-teams.exe:TeamsWebView
+window Teams /ms-teams\.exe.*/ : EmacsEdit
