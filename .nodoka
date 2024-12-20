@@ -1,5 +1,5 @@
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# �̂ǂ� - dot.nodoka
+# のどか - dot.nodoka
 # Copyright (C) 1999-2005, TAGA Nayuta <nayuta@users.sourceforge.net>
 #
 
@@ -8,45 +8,49 @@ define USE109
 define USEdefault
 #define AppleWirelessKeyboard
 
-# �܂��L�[�{�[�h��`��ǂݍ���
+# まずキーボード定義を読み込む
 if ( USE104 )
-  include "104.nodoka"		# 104 �L�[�{�[�h�ݒ�
+  include "104.nodoka"		# 104 キーボード設定
   if ( USE109on104 )
-    include "109on104.nodoka"	# 104 �L�[�{�[�h�� 109 �L�[�{�[�h����
+    include "109on104.nodoka"	# 104 キーボードを 109 キーボード風に
   endif
 else
-  include "109.nodoka"		# 109 �L�[�{�[�h�ݒ�
+  include "109.nodoka"		# 109 キーボード設定
   if ( USE104on109 )
-    include "104on109.nodoka"	# 109 �L�[�{�[�h�� 104 �L�[�{�[�h����
+    include "104on109.nodoka"	# 109 キーボードを 104 キーボード風に
   endif
 endif
 
 if ( USEdefault )
-  include	"default.nodoka"	 # Emacs ���C�N�Ȃ��܂��܂Ȑݒ�
+  include	"default.nodoka"	 # Emacs ライクなさまざまな設定
 endif
+
 
 keymap Global
 
 key C-A-D = &DescribeBindings
 
-# ���̃t�@�C�����z�[���f�B���N�g���ɃR�s�[���Ă���A
-# �ȉ��Ɏ����̍D�݂̃L�[�o�C���f�B���O��ݒ肷��Ƃ悢�B
-# ���̃t�@�C�����̂�ύX���Ȃ����ƁB
+# このファイルをホームディレクトリにコピーしてから、
+# 以下に自分の好みのキーバインディングを設定するとよい。
+# このファイル自体を変更しないこと。
+
+# 新しい Outlook の検索窓で、Ctrl-\ で IME ON し、Ctrl-\ を離した後に文字入力しようとすると、ショートカットキー表示が出て、文字入力が中断されてしまうのを回避
+keyseq $ToggleIME	= &VK(HANJA) # Windows IME設定 互換性 "以前のバージョンのMicrosoft IMEを使う" を "オン" と下記設定が必要
 
 #
 # for AppleWirelessKeyboard
-# alt(option)-control-�Ecommand
+# alt(option)-control-右command
 #
 if ( AppleWirelessKeyboard )
-    mod win -= RightWindows     # RightWindows �����f�B�t�@�C���ł͂Ȃ�����
-    key *RightWindows = *Delete # �ǂ�ȂƂ��ł� RightWindows �� Delete �֕ϊ�����
+    mod win -= RightWindows     # RightWindows をモディファイヤではなくする
+    key *RightWindows = *Delete # どんなときでも RightWindows を Delete へ変換する
 
-    # �ǂ�ȂƂ��ł�F12��PrintScreen�֕ϊ�
+    # どんなときでもF12をPrintScreenへ変換
     key *F12 = *PrintScreen
 endif
 
-# USEdefault���`�����ꍇ�ɁAdefault.nodoka�ɂāAEsc�𔼊p/�S�p�ɐݒ肳��Ă��܂��̂�
-# �ȉ��̒�`�ŉ��
+# USEdefaultを定義した場合に、default.nodokaにて、Escを半角/全角に設定されてしまうのを
+# 以下の定義で回避
 key *Esc = Esc
 
 #
