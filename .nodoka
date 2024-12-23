@@ -100,3 +100,7 @@ key *IC-C-Yen = C-Yen
 ## Teams
 #CLASS: C:\Program Files\WindowsApps\MSTeams_23285.3607.2525.937_x64__8wekyb3d8bbwe\ms-teams.exe:TeamsWebView
 window Teams /ms-teams\.exe.*/ : EmacsEdit
+
+## Edge
+# CLASS: C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe:Chrome_WidgetWin_1:Chrome_RenderWidgetHostHWND
+window Edge /msedge\.exe.*/ : EmacsEdit
