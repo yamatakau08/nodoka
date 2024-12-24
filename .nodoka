@@ -107,3 +107,8 @@ window Teams /ms-teams\.exe.*/ : EmacsEdit
 ## Edge
 # CLASS: C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe:Chrome_WidgetWin_1:Chrome_RenderWidgetHostHWND
 window Edge /msedge\.exe.*/ : EmacsEdit
+
+## Obsidian
+#CLASS:	C:\Users\0000910700\AppData\Local\Obsidian\Obsidian.exe:Chrome_WidgetWin_1
+window Obsidian /Obsidian.exe/ : EmacsEdit
+
