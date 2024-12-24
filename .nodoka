@@ -66,7 +66,10 @@ key C-V = &Default
 
 ## Power Point
 #CLASS: C:\Program Files (x86)\Microsoft Office\Root\Office16\POWERPNT.EXE:PPTFrameClass:MDIClient
-window PowerPoint /POWERPNT\.EXE.*/ : EmacsEdit
+# rename keymap name from PowerPoint to MyPowerPoint
+# bcause PowerPoint is aleady defined in default.nodoka, when keymap name is same, it conflicts,
+# EmacsEdit doesn't work well in Power Point
+window MyPowerPoint /POWERPNT\.EXE.*/ : EmacsEdit
 key C-V = &Default
 
 ## Project
